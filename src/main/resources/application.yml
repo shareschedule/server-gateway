@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://son:1234@localhost:9000
