@@ -19,16 +19,16 @@ public class CustomRoute {
         return builder.routes()
                 // 필터 X
                 .route("user", r -> r.path("/users/login/**")
-                        .uri("lb://SSUSER"))
+                        .uri("lb://CALENDAR"))
                 .route("dev", r -> r.path("/dev/**")
-                        .uri("lb://SSUSER"))
+                        .uri("lb://USER"))
                 // jwt 필터
                 .route("userJwtFilter", r -> r.path("/users/**")
                         .filters(f -> f.filter(jwtFilter.apply(new JwtFilter.Config())))
-                        .uri("lb://SSUSER"))
+                        .uri("lb://USER"))
                 .route("scheduleJwtFilter", r -> r.path("/schedules/**")
                         .filters(f -> f.filter(jwtFilter.apply(new JwtFilter.Config())))
-                        .uri("lb://SSSCHEDULE"))
+                        .uri("lb://SCHEDULE"))
                 .build();
     }
 }
