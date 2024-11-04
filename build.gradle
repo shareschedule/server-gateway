@@ -29,6 +29,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'io.jsonwebtoken:jjwt:0.12.3'
     implementation 'org.springframework.cloud:spring-cloud-starter-config:4.1.3'
+    implementation 'io.netty:netty-resolver-dns-native-macos:4.1.68.Final:osx-aarch_64'
 
     //Lombok
     compileOnly 'org.projectlombok:lombok'

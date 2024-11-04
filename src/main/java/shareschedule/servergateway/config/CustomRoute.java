@@ -18,10 +18,20 @@ public class CustomRoute {
 
         return builder.routes()
                 // 필터 X
+                //USER
+                .route("login", r -> r.path("/login/**")
+                        .uri("lb://USER"))
                 .route("user", r -> r.path("/users/login/**")
-                        .uri("lb://CALENDAR"))
+                        .uri("lb://USER"))
                 .route("dev", r -> r.path("/dev/**")
                         .uri("lb://USER"))
+                .route("refreshToken", r->r.path("/token/**")
+                        .uri("lb://USER"))
+
+                //CALENDARROLEMANAGER
+                .route("userRole", r->r.path("/calendar-user/**")
+                        .uri("lb://CALENDARROLEMANAGER"))
+
                 // jwt 필터
                 .route("userJwtFilter", r -> r.path("/users/**")
                         .filters(f -> f.filter(jwtFilter.apply(new JwtFilter.Config())))
@@ -29,6 +39,9 @@ public class CustomRoute {
                 .route("scheduleJwtFilter", r -> r.path("/schedules/**")
                         .filters(f -> f.filter(jwtFilter.apply(new JwtFilter.Config())))
                         .uri("lb://SCHEDULE"))
+                .route("calendarJwtFilter", r -> r.path("/calendars/**")
+                        .filters(f -> f.filter(jwtFilter.apply(new JwtFilter.Config())))
+                        .uri("lb://CALENDAR"))
                 .build();
     }
 }
